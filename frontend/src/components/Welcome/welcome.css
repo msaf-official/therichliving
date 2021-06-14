@@ -1,0 +1,33 @@
+.welcome_container{
+   
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.line_box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+.first{
+    width: 50px;
+    border-bottom:2px solid black ;
+    padding: 4px;
+    margin: 10px;
+}
+
+.welcome_content{
+    margin: 10px;
+
+}
+.welcome_content p{
+   letter-spacing: 3px;
+    text-align:center;
+    font-size: 30px ;
+    
+}

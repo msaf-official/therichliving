@@ -14,7 +14,7 @@ const Carousel = () => {
   ];
 
   useEffect(() => {
-    console.log("right");
+ 
     window.setTimeout(() => {
       goRight();
     }, animationTime);
