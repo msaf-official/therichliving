@@ -3,7 +3,7 @@ import "./carousel.css";
 
 const Carousel = () => {
   const [imgSlidePos, setImgSlidePos] = useState(0);
-  // const [transition, setTransition] = useState("ease-in 1s");
+  const [transition, setTransition] = useState("ease-in 1s");
   const [animationTime, setAnimationTime] = useState(3000);
 
   let slideCrouselImage = [
@@ -23,12 +23,12 @@ const Carousel = () => {
   function goRight() {
     if (imgSlidePos === -100 * (slideCrouselImage.length - 1)) {
       setAnimationTime(0);
-      // setTransition("none");
+      setTransition("none");
       setImgSlidePos(0);
     } else {
       setAnimationTime(3000);
       setImgSlidePos(imgSlidePos - 100);
-      // setTransition("ease-in 3s");
+      setTransition("ease-in 1s");
     }
   }
 
@@ -42,7 +42,7 @@ const Carousel = () => {
               className="slide"
               style={{
                 transform: `translateX(${imgSlidePos}%)`,
-                // transition: transition,
+                transition: transition,
               }}
             >
               <img className="home_image" src={item} />
