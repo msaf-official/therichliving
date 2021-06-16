@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./header.css";
 import Sidebar from "./Sidebar";
 import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
@@ -6,8 +6,8 @@ import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
 function Header() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(-100);
+  const [backgroundColor, setBackgroundColor] = useState("none");
   const sideBar = () => {
-    console.log(value);
     if (open) {
       setValue(-100);
       setOpen(false);
@@ -18,8 +18,20 @@ function Header() {
     setOpen(true);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll",()=>{
+      if(window.pageYOffset >= 100) {
+        setBackgroundColor("#000000")
+      }
+      else {
+        setBackgroundColor("none")
+      }
+    })
+  },[]);
+
+  
   return (
-    <div class="header">
+    <div class="header" style={{background:backgroundColor,alignItems:"center",transition: "ease-in-out 0.4s"}}>
       <div className="out_sidebar_container">
         <FormatAlignJustifyIcon
           className="icon"
@@ -29,7 +41,7 @@ function Header() {
 
         <Sidebar value={value} />
       </div>
-      <h2 style={{ marginLeft: "20px" }}>TRL</h2>
+      <h2 style={{ marginLeft: "20px",color:(backgroundColor == "none")?"#000":"#fff"}}>TRL</h2>
       <div class="nav">
         <ul class="nav-links">
           <li>
@@ -50,7 +62,10 @@ function Header() {
         </ul>
       </div>
       <div>
-        <button className="login_button" style={{ fontSize: 30 }}>
+        <button
+          className="login_button"
+          style={{ fontSize: 20, padding: "5px 10px" }}
+        >
           Login
         </button>
       </div>
