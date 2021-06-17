@@ -71,6 +71,9 @@ function Header() {
         <button
           className="login_button"
           style={{ fontSize: 20, padding: "5px 10px",color:(backgroundColor == "dodgerblue")?"#fff":"#000" }}
+          onClick={()=>{
+            history.push("/login")
+          }}
         >
           Login
         </button>

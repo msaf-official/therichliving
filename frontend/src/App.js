@@ -6,6 +6,7 @@ import Welcome from "./components/Welcome/Welcome";
 import Planes from "./components/Planes/Planes";
 import Products from "./components/Products/Products";
 import RegisterForm from "./components/Register/RegisterForm";
+import Login from "./components/Login/Login"
 function App() {
   return (
     <>
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <RegisterForm />
+          </Route>
+          <Route exact path="/login">
+            <Login />
           </Route>
         </Switch>
       </Router>
