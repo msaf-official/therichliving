@@ -78,7 +78,7 @@ function Header() {
           Login
         </button>
         
-        <button
+        {/* <button
           className="login_button"
           style={{ fontSize: 20, padding: "5px 10px",color:(backgroundColor == "dodgerblue")?"#fff":"#000" }}
           onClick={()=>{
@@ -86,7 +86,7 @@ function Header() {
           }}
         >
           Register
-        </button>
+        </button> */}
      
       </div>
     </div>

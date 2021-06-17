@@ -245,7 +245,7 @@ function RegisterForm() {
             Submit
           </button>
           <div className="signin_div">
-            Already have an Account? Please <a href="#"> Sign In</a>
+            Already have an Account? Please <a href="/login"> Sign In</a>
           </div>
         </div>
       </div>
