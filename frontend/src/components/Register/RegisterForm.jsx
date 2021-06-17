@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "90ch",
+      width: "70ch",
       "@media (max-width: 768px)": {
         width: "60ch",
       },
@@ -107,6 +107,7 @@ function RegisterForm() {
     <div style={{}}>
       {/* <div style={{backgroundColor:"#1b9a59",height:200,zIndex:-100}}></div> */}
       <div className="register_container">
+        <div style={{height:200,backgroundColor:"dodgerblue",width:"100%",zIndex:-100 ,position:"fixed",top:0,left:0,right:0}}></div>
         <ArrowBackIosIcon
           className="back_arrow"
           onClick={() => {

@@ -10,10 +10,11 @@
 }
 
 .back_arrow{
-    position: absolute;
+    position: fixed;
     top: 30px;
     left:30px;
     cursor: pointer;
+    color: white;
 }
 
 .back_arrow:hover{
@@ -25,10 +26,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 20px;
+    padding:20px 50px;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-    margin-top: 70px;
-    /* width: 60%; */
+    margin: 70px 0px;
+    background-color: white;
+    z-index: 100;
  
 }
 
@@ -77,7 +81,7 @@
 
     .container_field{
         width: 100%;
-        /* margin: 0px 10px; */
+        padding: 20px 0px;
     }
   .text_field{
       width: 150px;

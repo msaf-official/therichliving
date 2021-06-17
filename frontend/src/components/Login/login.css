@@ -10,7 +10,7 @@
 }
 
 .back_arrow{
-    position: absolute;
+    position: fixed;
     top: 30px;
     left:30px;
     cursor: pointer;
@@ -75,7 +75,7 @@
 @media screen and (max-width: 425px) {
 
     .container_field{
-        width: 93%;
+        width: 100%;
     }
   .text_field{
       width: 290px;
