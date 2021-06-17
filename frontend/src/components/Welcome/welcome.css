@@ -42,4 +42,7 @@
     .welcome_content{
         width: 100vw;
     }
+    .welcome_content p {
+        font-size: large;
+    }
   }
