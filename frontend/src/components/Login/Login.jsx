@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./login.css";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import RegisterFormBtn from "../Buttons/RegisterFormBtn";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 const useStyles = makeStyles((theme) => ({
   root: {
