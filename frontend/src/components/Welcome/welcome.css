@@ -6,6 +6,9 @@
     align-items: center;
     background-color: gold;
     flex-direction: column;
+
+    padding: 40px 0px;
+
 }
 
 .line_box{

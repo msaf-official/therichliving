@@ -1,3 +1,6 @@
+*{
+    font-family: "Roboto";
+}
 .planes_main_container{
     display: flex;
     justify-content: center;
@@ -45,4 +48,8 @@
 }
 .first_plane p{
     text-align: center;
+}
+
+.plane_about {
+    padding:20px;
 }
