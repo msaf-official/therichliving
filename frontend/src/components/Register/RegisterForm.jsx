@@ -69,10 +69,12 @@ function RegisterForm() {
       setErrorSId(true);
       return false;
     }
+    setErrorSId(false);
     if (name === "") {
       setErrorName(true);
       return false;
     }
+    setErrorName(false);
     if (data_of_birth === "") {
       setErrorDOB(true);
       return false;
@@ -81,19 +83,24 @@ function RegisterForm() {
       setErrorEmail(true);
       return false;
     }
+    setErrorEmail(false);
     if (password === "") {
       setErrorPassword(true);
       return false;
     }
+    setErrorPassword(false)
     if (mobile_number === "") {
       setErrorMNumber(true);
       return false;
     }
+    setErrorMNumber(false)
     if (!passwordValid || confirmPassword == "") {
       setConfirmPassword(" ");
       setPasswordValid(false);
       return false;
     }
+    setConfirmPassword("")
+    setPasswordValid(true)
     return true;
   };
 

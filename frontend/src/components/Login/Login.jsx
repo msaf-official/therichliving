@@ -28,10 +28,11 @@ function Login() {
   const [loginId, setLoginId] = useState("");
 
   const [password, setPassword] = useState("");
-  const [conform_password, setConformPassword] = useState("");
+  
 
-  const [showValidation, setValidation] = useState(false);
-  const [message, setMessage] = useState("");
+  const [errorId, setErrorId] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
+  
   const classes = useStyles();
   let history = useHistory();
 
@@ -41,12 +42,24 @@ function Login() {
   };
   const checkValidation = () => {
     if (loginId === "") {
-      setValidation(true);
-
-      setMessage(" id must be required");
-      return;
+      setErrorId(true);
+      return false;
     }
+    setErrorId(false);
+    if (password === "") {
+      setErrorPassword(true);
+      return false;
+    }
+    setErrorPassword(false)
+    return true;
   };
+
+
+  const submitForm = () =>{
+    if (checkValidation()) {
+      alert("Form submitted successfully")
+    }
+  }
 
   return (
     <div className="register_container">
@@ -64,6 +77,7 @@ function Login() {
           <TextField
             id="outlined-basic"
             label="Distributor ID"
+            error={errorId}
             variant="outlined"
             onChange={(e) => {
               setLoginId(e.target.value);
@@ -72,6 +86,7 @@ function Login() {
           <TextField
             id="outlined-basic"
             label="Your Password"
+            error={errorPassword}
             variant="outlined"
             onChange={(e) => {
               setPassword(e.target.value);
@@ -79,12 +94,7 @@ function Login() {
           />
         </form>
 
-        {showValidation && (
-          <div style={{ color: "red", fontSize: "20px", letterSpacing: "2px" }}>
-            {message}
-          </div>
-        )}
-        <button className="btn" onClick={checkValidation}>
+        <button className="btn" onClick={submitForm}>
           Login
         </button>
         <div className="signin_div">
