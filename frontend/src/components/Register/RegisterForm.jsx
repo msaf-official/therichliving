@@ -122,16 +122,16 @@ console.log(e.target.value);
              
 
             </form>
-            {/* <RegisterFormBtn /> */}
+            
          { showValidation &&
-           <div style={{color:"red",fontSize:"30px",letterSpacing:"4px"}}>
+           <div style={{color:"red",fontSize:"20px",letterSpacing:"2px"}}>
               {message }
             </div>}
         <button className="btn" onClick={checkValidation}>
           Submit
         </button>
         <div className="signin_div">
-         Already have an Account? Please <a href="#"> Sign In</a>
+         Already have an Account? Please.. <a a href="/login">Sign In</a>
         </div>
            
             </div>
