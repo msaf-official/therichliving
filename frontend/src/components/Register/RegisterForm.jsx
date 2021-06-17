@@ -79,11 +79,6 @@ function RegisterForm() {
       setErrorDOB(true);
       return false;
     }
-    if (mobile_number ==="") {
-      setErrorMNumber(true);
-      return false;
-    }
-    setErrorMNumber(false)
     if (email === "") {
       setErrorEmail(true);
       return false;
