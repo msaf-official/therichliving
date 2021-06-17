@@ -52,11 +52,17 @@ function Login() {
     return true;
   };
 
+  const clearFields = () =>{
+    setPassword("")
+    setLoginId("")
+  }
 
   const submitForm = () =>{
     if (checkValidation()) {
       alert("Form submitted successfully")
     }
+
+    clearFields();
   }
 
   return (
@@ -68,7 +74,7 @@ function Login() {
         }}
       />
       <div style={{height:200,backgroundColor:"dodgerblue",width:"100%",zIndex:-100 ,position:"fixed",top:0,left:0,right:0}}></div>
-      <div className="container_field" style={{height:"100vh"}}>
+      <div className="container_field" style={{height:"80vh"}}>
         <h2>Login Form</h2>
         <div className="line"></div>
         <form className={classes.root} noValidate autoComplete="off">
@@ -76,6 +82,7 @@ function Login() {
             id="outlined-basic"
             label="Distributor ID"
             error={errorId}
+            value={loginId}
             variant="outlined"
             onChange={(e) => {
               setLoginId(e.target.value);
@@ -85,6 +92,7 @@ function Login() {
             id="outlined-basic"
             label="Your Password"
             error={errorPassword}
+            value={password}
             variant="outlined"
             onChange={(e) => {
               setPassword(e.target.value);

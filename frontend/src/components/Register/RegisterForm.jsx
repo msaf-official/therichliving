@@ -37,7 +37,7 @@ function RegisterForm() {
   const [sponser_id, setSponserId] = useState("");
   const [sponser_name, setSponserName] = useState("");
   const [name, setName] = useState("");
-  const [data_of_birth, setdate_of_birth] = useState("");
+  const [data_of_birth, setdate_of_birth] = useState(new Date());
   const [mobile_number, setMobileNumber] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -79,6 +79,11 @@ function RegisterForm() {
       setErrorDOB(true);
       return false;
     }
+    if (mobile_number ==="") {
+      setErrorMNumber(true);
+      return false;
+    }
+    setErrorMNumber(false)
     if (email === "") {
       setErrorEmail(true);
       return false;
@@ -104,15 +109,27 @@ function RegisterForm() {
     return true;
   };
 
+  const clearFields = () => {
+    setSponserId("")
+    setSponserName("")
+    setName("")
+    setMobileNumber("")
+    setEmail("")
+    setPassword("")
+    setConfirmPassword("")
+    setdate_of_birth(new Date())
+  }
+
   const submitForm = () => {
     if (checkValidation()) {
       alert("Form Submitted Successfully")
     }
+
+    clearFields();
   }
 
   return (
     <div style={{}}>
-      {/* <div style={{backgroundColor:"#1b9a59",height:200,zIndex:-100}}></div> */}
       <div className="register_container">
         <div style={{height:200,backgroundColor:"dodgerblue",width:"100%",zIndex:-100 ,position:"fixed",top:0,left:0,right:0}}></div>
         <ArrowBackIosIcon
@@ -135,6 +152,7 @@ function RegisterForm() {
               label="Sponser ID *"
               error={errorSId}
               variant="outlined"
+              value={sponser_id}
               onChange={(e) => {
                 setSponserId(e.target.value);
               }}
@@ -151,6 +169,7 @@ function RegisterForm() {
               label="Enter Your Name *"
               variant="outlined"
               error={errorName}
+              value={name}
               onChange={(e) => {
                 setName(e.target.value);
               }}
@@ -161,6 +180,7 @@ function RegisterForm() {
                 shrink: true,
               }}
               label="Date of birth*"
+              value={data_of_birth}
               error={errorDOB}
               variant="outlined"
               type={"date"}
@@ -174,6 +194,7 @@ function RegisterForm() {
               label="Enter Your Mobile Number *"
               variant="outlined"
               type={"number"}
+              value={mobile_number}
               onChange={(e) => {
                 setMobileNumber(e.target.value);
               }}
@@ -183,6 +204,7 @@ function RegisterForm() {
               label="Enter Your Email *"
               variant="outlined"
               error={errorEmail}
+              value={email}
               type="email"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -194,6 +216,7 @@ function RegisterForm() {
               type={!visibilityIcon ? "password" : "text"}
               error={errorPassword}
               variant="outlined"
+              value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -220,6 +243,7 @@ function RegisterForm() {
               type={!cVisibilityIcon ? "password" : "text"}
               error={confirmPassword !== "" ? !passwordValid : false}
               variant="outlined"
+              value={confirmPassword}
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
                 for (var i = 0; i < e.target.value.length; i++) {
