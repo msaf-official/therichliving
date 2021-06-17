@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./registerForm.css";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import RegisterFormBtn from "../Buttons/RegisterFormBtn";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import Visibility from "@material-ui/icons/Visibility";
+import { InputAdornment } from "@material-ui/core";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -24,6 +26,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function VisibilityIcon(props) {
+  if (props.state) {
+    return <Visibility />;
+  }
+  return <VisibilityOff />;
+}
+
 function RegisterForm() {
   const [sponser_id, setSponserId] = useState("");
   const [sponser_name, setSponserName] = useState("");
@@ -32,19 +41,20 @@ function RegisterForm() {
   const [mobile_number, setMobileNumber] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [conform_password, setConformPassword] = useState("");
-  const [verify, setVerify] = useState();
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errorSId, setErrorSId] = useState(false);
-  const [errorSName, setErrorSName] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorDOB, setErrorDOB] = useState(false);
   const [errorMNumber, setErrorMNumber] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
-  const [message, setMessage] = useState("");
+  const [visibilityIcon, setVisibilityIcon] = useState(false);
+  const [cVisibilityIcon, setCVisibilityIcon] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+
   const classes = useStyles();
   let history = useHistory();
-  console.log(sponser_id);
+
   let payload = {
     sponser_id,
     sponser_name,
@@ -53,38 +63,46 @@ function RegisterForm() {
     mobile_number,
     email,
     password,
-    conform_password,
-    verify,
   };
   const checkValidation = () => {
-
     if (sponser_id === "") {
       setErrorSId(true);
-      setMessage("Incomplete field")
-    } else if (name === "") {
-      setErrorName(true);
-      setMessage("Incomplete field")
-    } else if (data_of_birth === "") {
-      setErrorDOB(true);
-      setMessage("Incomplete field")
-    } else if (email === "") {
-      setErrorEmail(true);
-      setMessage("Incomplete field")
-    } else if (password === "") {
-      setErrorPassword(true);
-      setMessage("Incomplete field")
-    } else if (mobile_number === "") {
-      setErrorMNumber(true)
-      setMessage("Incomplete field")
-    } 
-  };
-  const verifyPassword = (e) => {
-    if (e.target.value == password) {
-      console.log("password are same");
-    } else {
-      console.log("password are not same");
+      return false;
     }
+    if (name === "") {
+      setErrorName(true);
+      return false;
+    }
+    if (data_of_birth === "") {
+      setErrorDOB(true);
+      return false;
+    }
+    if (email === "") {
+      setErrorEmail(true);
+      return false;
+    }
+    if (password === "") {
+      setErrorPassword(true);
+      return false;
+    }
+    if (mobile_number === "") {
+      setErrorMNumber(true);
+      return false;
+    }
+    if (!passwordValid || confirmPassword == "") {
+      setConfirmPassword(" ");
+      setPasswordValid(false);
+      return false;
+    }
+    return true;
   };
+
+  const submitForm = () => {
+    if (checkValidation()) {
+      alert("Form Submitted Successfully")
+    }
+  }
+
   return (
     <div style={{}}>
       {/* <div style={{backgroundColor:"#1b9a59",height:200,zIndex:-100}}></div> */}
@@ -98,7 +116,12 @@ function RegisterForm() {
         <div className="container_field">
           <h2>Registeration Form</h2>
           <div className="line"></div>
-          <form className={classes.root} style={{marginTop:30}} noValidate  autoComplete="off">
+          <form
+            className={classes.root}
+            style={{ marginTop: 30 }}
+            noValidate
+            autoComplete="off"
+          >
             <TextField
               id="outlined-basic"
               label="Sponser ID *"
@@ -110,11 +133,10 @@ function RegisterForm() {
             />
             <TextField
               id="outlined-basic"
-              label="Sponser Name *"
+              label="Sponser Name"
               variant="outlined"
-              onChange={(e) => {
-                setSponserName(e.target.value);
-              }}
+              value={sponser_id}
+              disabled={true}
             />
             <TextField
               id="outlined-basic"
@@ -127,9 +149,13 @@ function RegisterForm() {
             />
             <TextField
               id="outlined-basic"
-              label="Enter Your D.O.B *"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              label="Date of birth*"
               error={errorDOB}
               variant="outlined"
+              type={"date"}
               onChange={(e) => {
                 setdate_of_birth(e.target.value);
               }}
@@ -139,6 +165,7 @@ function RegisterForm() {
               error={errorMNumber}
               label="Enter Your Mobile Number *"
               variant="outlined"
+              type={"number"}
               onChange={(e) => {
                 setMobileNumber(e.target.value);
               }}
@@ -156,22 +183,64 @@ function RegisterForm() {
             <TextField
               id="outlined-basic"
               label="Enter Your Password *"
+              type={!visibilityIcon ? "password" : "text"}
               error={errorPassword}
               variant="outlined"
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <div
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        !visibilityIcon
+                          ? setVisibilityIcon(true)
+                          : setVisibilityIcon(false);
+                      }}
+                    >
+                      <VisibilityIcon state={visibilityIcon} />
+                    </div>
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="outlined-basic"
               label="Confirm Password *"
+              type={!cVisibilityIcon ? "password" : "text"}
+              error={confirmPassword !== "" ? !passwordValid : false}
               variant="outlined"
               onChange={(e) => {
-                setConformPassword(e.target.value);
+                setConfirmPassword(e.target.value);
+                for (var i = 0; i < e.target.value.length; i++) {
+                  if (e.target.value[i] != password[i]) {
+                    setPasswordValid(false);
+                    return;
+                  }
+                }
+                setPasswordValid(true);
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <div
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        !cVisibilityIcon
+                          ? setCVisibilityIcon(true)
+                          : setCVisibilityIcon(false);
+                      }}
+                    >
+                      <VisibilityIcon state={cVisibilityIcon} />
+                    </div>
+                  </InputAdornment>
+                ),
               }}
             />
           </form>
-          <button className="btn" onClick={checkValidation}>
+          <button className="btn" onClick={submitForm}>
             Submit
           </button>
           <div className="signin_div">
