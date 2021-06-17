@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {useHistory } from "react-router-dom";
 import './registerForm.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -38,6 +39,7 @@ function RegisterForm() {
   const[showValidation,setValidation]=useState(false);
   const [message,setMessage]=useState("");
   const classes = useStyles();
+  let history = useHistory();
   console.log(sponser_id);
   let payload ={
     sponser_id,
@@ -93,7 +95,9 @@ function RegisterForm() {
   }
     return (
         <div className="register_container">
-          <ArrowBackIosIcon className="back_arrow"/>
+          <ArrowBackIosIcon className="back_arrow" onClick={()=>{
+            history.goBack();
+          }}/>
             <div className="container_field">
             <h2 >Registeration Form</h2>
             <div className="line"></div>

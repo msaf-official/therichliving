@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Link,useHistory } from "react-router-dom";
 import "./header.css";
 import Sidebar from "./Sidebar";
 import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
@@ -8,6 +9,7 @@ function Header() {
   const [value, setValue] = useState(-100);
   const [backgroundColor, setBackgroundColor] = useState("dodgerblue");
   const [rotate, setRotate] = useState("0deg");
+  let history = useHistory();
 
   const sideBar = () => {
     if (open) {
@@ -72,6 +74,17 @@ function Header() {
         >
           Login
         </button>
+        
+        <button
+          className="login_button"
+          style={{ fontSize: 20, padding: "5px 10px",color:(backgroundColor == "dodgerblue")?"#fff":"#000" }}
+          onClick={()=>{
+            history.push("/register")
+          }}
+        >
+          Register
+        </button>
+     
       </div>
     </div>
   );
