@@ -1,9 +1,9 @@
 import React from 'react'
 import './header.css'
 function Sidebar({value}) {
-    console.log(value)
+    
     return (<>
-         <div className="sidebar_container" style={{ transform:`translateX(${value}%)`,
+         <div className="sidebar_container" style={{ background:"white",transform:`translateX(${value}%)`,
         transition:"all 0.5s ease"}}>
             <div className="sidebar_box">
                 <ul>

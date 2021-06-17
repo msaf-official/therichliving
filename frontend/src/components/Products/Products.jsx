@@ -23,56 +23,56 @@ function Products() {
                
           
         <div className="applicence_container_box">
-        <img src={trending1}/>
+        <img alt={"image"} src={trending1}/>
             <div className="product_name">this is product</div>
         </div>
         <div className="applicence_container_box">
-        <img src={trending2}/>
-            <div className="product_name">this is product</div>
-        </div>
-        <div className="applicence_container_box">
-          
-            <img src={trending3}/>
+        <img alt={"image"} src={trending2}/>
             <div className="product_name">this is product</div>
         </div>
         <div className="applicence_container_box">
           
-            <img src={trending4}/>
+            <img alt={"image"} src={trending3}/>
+            <div className="product_name">this is product</div>
+        </div>
+        <div className="applicence_container_box">
+          
+            <img alt={"image"} src={trending4}/>
             <div className="product_name">this is product</div>
         </div>
         <div className="applicence_container_box">
            
-            <img src={trending4}/>
+            <img alt={"image"} src={trending4}/>
             <div className="product_name">this is product</div>
         </div>
         <div className="applicence_container_box">
            
-            <img src={trending4}/>
+            <img alt={"image"} src={trending4}/>
             <div className="product_name">this is product</div>
         </div>
         <div className="applicence_container_box">
            
-            <img src={trending4}/>
+            <img alt={"image"} src={trending4}/>
             <div className="product_name">this is product</div>
         </div>
         <div className="applicence_container_box">
         
-            <img src={trending4}/>
+            <img alt={"image"} src={trending4}/>
             <div className="product_name">this is product</div>
         </div>
         <div className="applicence_container_box">
            
-           <img src={trending4}/>
+           <img alt={"image"} src={trending4}/>
            <div className="product_name">this is product</div>
        </div>
        <div className="applicence_container_box">
           
-           <img src={trending4}/>
+           <img alt={"image"} src={trending4}/>
            <div className="product_name">this is product</div>
        </div>
        <div className="applicence_container_box">
        
-           <img src={trending4}/>
+           <img alt={"image"} src={trending4}/>
            <div className="product_name">this is product</div>
        </div>
       

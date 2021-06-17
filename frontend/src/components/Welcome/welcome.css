@@ -15,6 +15,11 @@
     align-items: center;
     /* background-color: red; */
 }
+
+.welcome_container h1 {
+    text-align: center;
+}
+
 .first{
     width: 50px;
     border-bottom:2px solid black ;
@@ -32,3 +37,9 @@
     font-size: 30px ;
     
 }
+
+@media screen and (max-width: 425px) {
+    /* .welcome_container {
+      margin-top: -100px;
+    } */
+  }
