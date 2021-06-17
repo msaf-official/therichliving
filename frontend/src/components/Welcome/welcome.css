@@ -29,7 +29,7 @@
 
 .welcome_content{
     margin: 10px;
-
+    width: 75vw;
 }
 .welcome_content p{
    letter-spacing: 3px;
@@ -39,7 +39,7 @@
 }
 
 @media screen and (max-width: 425px) {
-    /* .welcome_container {
-      margin-top: -100px;
-    } */
+    .welcome_content{
+        width: 100vw;
+    }
   }

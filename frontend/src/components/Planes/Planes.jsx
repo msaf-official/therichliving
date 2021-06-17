@@ -29,7 +29,7 @@ function Planes() {
           <img className="planes_images" src={"	https://www.myvestige.com/images/003.jpg"}/>
           <div className="plane_about">
             <h3>Car Achievers</h3>
-            <p>to those who know the way, Show the way and Go the way.</p>
+            <p>To those who know the way, Show the way and Go the way.</p>
           </div>
         </div>
       </div>
