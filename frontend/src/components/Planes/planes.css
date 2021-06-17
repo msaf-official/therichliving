@@ -24,19 +24,19 @@
 
 .first_plane{
     width: 700px;
-    height: 400px;
-    color: white;
-    background-color: midnightblue;
+    color: black;
+    /* background-color: midnightblue; */
     margin: 20px;
     display: flex;
-    box-shadow: rgb(0 0 0 / 35%) 0px 20px 30px;
+    border-radius: 20px;
+    box-shadow: rgb(0 0 0 / 22%) 0px 20px 30px;
     flex-direction: column;
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
     /* box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px; */
   /* align-items: center;   */
 }
 .planes_images{
-    height: 300px;
+    width: 100%;
     background-color: white;
 }
 .first_plane h3{
