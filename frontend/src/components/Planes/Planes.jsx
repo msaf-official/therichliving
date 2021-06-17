@@ -4,7 +4,7 @@ function Planes() {
   return (
     <div className="planes_main_container">
       <div className="planes_container">
-        <div className="first_plane">
+        <div className="first_plane fp">
           <img className="planes_images" src={"	https://www.myvestige.com/images/001.jpg"} />
           <div className="plane_about">
             <h3>Monthely Scheme</h3>
