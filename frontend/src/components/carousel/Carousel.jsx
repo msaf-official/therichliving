@@ -31,7 +31,7 @@ const Carousel = () => {
       setTransition("ease-in 1s");
     }
   }
-
+  
   return (
     <>
       <div className="slider">
@@ -42,10 +42,11 @@ const Carousel = () => {
               className="slide"
               style={{
                 transform: `translateX(${imgSlidePos}%)`,
+                backgroundImage: "url("+item+")",
                 transition: transition,
               }}
             >
-              <img className="home_image" src={item} />
+              {/* <img className="home_image" src={item} /> */}
             </div>
           );
         })}

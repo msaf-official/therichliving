@@ -12,7 +12,7 @@ function Welcome() {
             </div>
             <div className="welcome_content">
                 <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro rerum voluptates asperiores illo eligendi eveniet, atque nobis praesentium? Nam quas beatae nisi voluptatum impedit sapiente, nihil soluta vel quo repellat.
+                TheRichLiving Marketing Pvt. Ltd. is leading direct selling company dealing in world class wellness products. TheRichLiving is constantly growing at a phenomenal rate every year. The growth rate in itself speaks volumes about the quality of the products, the marketing plan and the management that has been able to deliver such a rewarding and sustainable system.
                 </p>
             </div>
         </div>

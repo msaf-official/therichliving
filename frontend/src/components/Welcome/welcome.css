@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: gold;
     flex-direction: column;
 }
 
@@ -14,6 +15,11 @@
     align-items: center;
     /* background-color: red; */
 }
+
+.welcome_container h1 {
+    text-align: center;
+}
+
 .first{
     width: 50px;
     border-bottom:2px solid black ;
@@ -23,7 +29,7 @@
 
 .welcome_content{
     margin: 10px;
-
+    width: 75vw;
 }
 .welcome_content p{
    letter-spacing: 3px;
@@ -31,3 +37,12 @@
     font-size: 30px ;
     
 }
+
+@media screen and (max-width: 425px) {
+    .welcome_content{
+        width: 100vw;
+    }
+    .welcome_content p {
+        font-size: large;
+    }
+  }
