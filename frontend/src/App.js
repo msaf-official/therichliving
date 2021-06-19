@@ -7,6 +7,8 @@ import Planes from "./components/Planes/Planes";
 import Products from "./components/Products/Products";
 import RegisterForm from "./components/Register/RegisterForm";
 import Login from "./components/Login/Login"
+import Footer from "./components/Footer/Footer"
+import Dasbord from "./components/Footer/Dasbord";
 function App() {
   return (
     <>
@@ -17,6 +19,7 @@ function App() {
             <Carousel />
             <Welcome />
             <Planes />
+            <Footer/>
             {/* <Products /> */}
           </Route>
           <Route exact path="/register">
