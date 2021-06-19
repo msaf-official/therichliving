@@ -40,6 +40,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    cursor:'pointer'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
