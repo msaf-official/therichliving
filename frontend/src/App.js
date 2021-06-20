@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Carousel from "./components/carousel/Carousel";
+import Header from "./components/Header/Header";
+import Welcome from "./components/Welcome/Welcome";
+import Planes from "./components/Planes/Planes";
+import Products from "./components/Products/Products";
+import RegisterForm from "./components/Register/RegisterForm";
+import Login from "./components/Login/Login"
+import Footer from "./components/Footer/Footer"
+import DistributorSidebar from "./components/DistributorDashboard/DistributorSidebar/DistributorSidebar";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Header />
+            <Carousel />
+            <Welcome />
+            <Planes />
+            <Footer/>
+            {/* <Products /> */}
+          </Route>
+          <Route exact path="/register">
+            <RegisterForm />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+
+          <Route exact path="/distributor">
+          <DistributorSidebar/>
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 

@@ -1,0 +1,51 @@
+.welcome_container{
+   
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gold;
+    flex-direction: column;
+
+    padding: 40px 0px;
+
+}
+
+.line_box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.welcome_container h1 {
+    text-align: center;
+}
+
+.first{
+    width: 50px;
+    border-bottom:2px solid black ;
+    padding: 4px;
+    margin: 10px;
+}
+
+.welcome_content{
+    margin: 10px;
+    width: 75vw;
+}
+.welcome_content p{
+   letter-spacing: 3px;
+    text-align:center;
+    font-size: 30px ;
+    
+}
+
+@media screen and (max-width: 425px) {
+    .welcome_content{
+        width: 100vw;
+    }
+    .welcome_content p {
+        font-size: large;
+    }
+  }
