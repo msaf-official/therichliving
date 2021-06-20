@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 import Carousel from "./components/carousel/Carousel";
 import Header from "./components/Header/Header";
 import Welcome from "./components/Welcome/Welcome";
@@ -8,6 +7,7 @@ import Products from "./components/Products/Products";
 import RegisterForm from "./components/Register/RegisterForm";
 import Login from "./components/Login/Login"
 import Footer from "./components/Footer/Footer"
+import DistributorSidebar from "./components/DistributorDashboard/DistributorSidebar/DistributorSidebar";
 function App() {
   return (
     <>
@@ -26,6 +26,10 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Login />
+          </Route>
+
+          <Route exact path="/distributor">
+          <DistributorSidebar/>
           </Route>
         </Switch>
       </Router>
