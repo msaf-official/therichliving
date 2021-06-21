@@ -3,6 +3,7 @@
   background-color: #00004d;
   padding-top: 3em;
   display: flex;
+  flex-direction: column;
   /* position:; */
   /* bottom: 0; */
   width: 100%;
@@ -13,7 +14,7 @@
   padding: 35px;
   flex-direction: row;
   align-items: center;
-  width: 85vw;
+  /* width: 85vw; */
 }
 .row2 {
   display: flex;

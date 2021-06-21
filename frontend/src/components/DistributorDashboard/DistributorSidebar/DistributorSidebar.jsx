@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -37,6 +38,8 @@ import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStatio
 import ReportIcon from "@material-ui/icons/Report";
 import Dashboard from "../Dashboard";
 import Footer from "../../Footer/Footer";
+import Profile from "../Profile/Profile";
+import ChangePassword from "../ChangePassword/ChangePassword"
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -103,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DistributorSidebar() {
+export default function DistributorSidebar({dashboard=false,profile=false,changepass=false}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -112,15 +115,31 @@ export default function DistributorSidebar() {
   const [openIncome, setOpenIncome] = useState(false);
   const [openWithdrawal, setOpenWithdrawal] = useState(false);
 
+  const [viewProfile, setViewProfile] = useState(false);
+  const [active, setActive] = useState();
+  const [openViewProfile, setOpenViewProfile] = useState(false);
+  const [openDashboard, setOpenDashboard] = useState(true);
+  let history = useHistory();
   const handleClickProfile = () => {
     setopenProfile(!openProfile);
+    setOpenIncome(false);
+    setOpenMember(false);
+    setOpenWithdrawal(false);
   };
   const handleClickMember = () => {
     setOpenMember(!openMember);
+    setopenProfile(false);
+    setOpenIncome(false);
+
+    setOpenWithdrawal(false);
   };
 
   const handleClickIncome = () => {
     setOpenIncome(!openIncome);
+    setopenProfile(false);
+
+    setOpenMember(false);
+    setOpenWithdrawal(false);
   };
 
   const handleDrawerOpen = () => {
@@ -133,6 +152,19 @@ export default function DistributorSidebar() {
   const handleClickWithdrawal = () => {
     setOpenWithdrawal(!openWithdrawal);
   };
+    setopenProfile(false);
+    setOpenIncome(false);
+    setOpenMember(false);
+  };
+  const activeList = (name) => {
+    setActive(name);
+  };
+  // const handleProfile = () => {
+   
+  //   // console.log("this is handle profile");
+  //   // setOpenViewProfile(!openViewProfile);
+  //   // setOpenDashboard(!openDashboard);
+  // };
 
   return (
     <div className={classes.root}>
@@ -156,7 +188,7 @@ export default function DistributorSidebar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+           The Rich Living
           </Typography>
         </Toolbar>
       </AppBar>
@@ -195,14 +227,7 @@ export default function DistributorSidebar() {
           ))}
         </List>
         <Divider />
-        {/* <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
+
         <List>
           <>
             <ListItem onClick={handleClickProfile}>
@@ -211,12 +236,18 @@ export default function DistributorSidebar() {
               </ListItemIcon>
               <ListItemText primary="Profile" />
 
-              {openProfile ? <ExpandLess /> : <ExpandMore />}
+            {openProfile ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openProfile} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <ListItem button className={classes.nested}>
-                  <ListItemIcon>
+                <ListItem
+                  button
+                  className={classes.nested}
+                  onClick={()=>{
+                    history.push("/distributor/profile");
+                 }}
+                >
+                  <ListItemIcon >
                     <VisibilityIcon />
                   </ListItemIcon>
                   <ListItemText primary="View profile" />
@@ -225,9 +256,12 @@ export default function DistributorSidebar() {
                   <ListItemIcon>
                     <EditIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Edit Account Detail" />
+                  <ListItemText primary="Edit Profile" />
                 </ListItem>
-                <ListItem button className={classes.nested}>
+                <ListItem button className={classes.nested} onClick={()=>{
+                 
+                  history.push('/distributor/changepassword')
+                }}>
                   <ListItemIcon>
                     <FiberManualRecordIcon />
                   </ListItemIcon>
@@ -240,8 +274,11 @@ export default function DistributorSidebar() {
         </List>
         <List>
           <>
-            <ListItem onClick={handleClickMember}>
-              <ListItemIcon>
+            <ListItem
+              onClick={handleClickMember}
+              className={active === "name" ? "active" : ""}
+            >
+              <ListItemIcon onClick={() => activeList("name")}>
                 <PeopleIcon />
               </ListItemIcon>
               <ListItemText primary="All Memebers" />
@@ -274,7 +311,7 @@ export default function DistributorSidebar() {
               <ListItemIcon>
                 <MoneyIcon />
               </ListItemIcon>
-              <ListItemText primary="Income" />
+              <ListItemText primary="Income Report" />
 
               {openIncome ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
@@ -284,25 +321,31 @@ export default function DistributorSidebar() {
                   <ListItemIcon>
                     <FiberManualRecordIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Direct Income Report" />
+                  <ListItemText primary="Direct Income" />
                 </ListItem>
                 <ListItem button className={classes.nested}>
                   <ListItemIcon>
                     <FiberManualRecordIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Level Income Report" />
+                  <ListItemText primary="Level Income" />
                 </ListItem>
                 <ListItem button className={classes.nested}>
                   <ListItemIcon>
                     <FiberManualRecordIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Single Leg Income Report" />
+                  <ListItemText primary="Single Leg Income" />
                 </ListItem>
                 <ListItem button className={classes.nested}>
                   <ListItemIcon>
                     <FiberManualRecordIcon />
                   </ListItemIcon>
                   <ListItemText primary="Reward Income" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Upgrade Income" />
                 </ListItem>
               </List>
             </Collapse>
@@ -326,13 +369,13 @@ export default function DistributorSidebar() {
                   <ListItemIcon>
                     <FiberManualRecordIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Withdrawl fund" />
+                  <ListItemText primary="Withdrawal fund" />
                 </ListItem>
                 <ListItem button className={classes.nested}>
                   <ListItemIcon>
                     <ReportIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Widthdrawl Report" />
+                  <ListItemText primary="Withdrawal Report" />
                 </ListItem>
               </List>
             </Collapse>
@@ -342,10 +385,10 @@ export default function DistributorSidebar() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
-          <Dashboard />
-          {/* <Footer /> */}
-        </Typography>
+      
+         {profile && <Profile />}
+         {changepass && <ChangePassword />} 
+       
       </main>
     </div>
   );

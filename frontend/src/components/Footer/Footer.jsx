@@ -10,7 +10,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 export default function Footer() {
   return (
     <div className="main-footer">
-      <div className="Container">
+      {/* <div className="Container"> */}
         <div className="row">
           {/* colomn 1*/}
           <div className="col">
@@ -66,7 +66,7 @@ export default function Footer() {
             &copy;{new Date().getFullYear()} All rights reserved | Design by
             MSAF
           </p>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

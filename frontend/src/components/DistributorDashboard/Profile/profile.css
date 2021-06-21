@@ -1,0 +1,91 @@
+.profile_container{
+    display: flex;
+    flex-wrap: wrap;
+   justify-content: space-around;
+    width: 100%;
+ 
+    padding: 20px   ;
+   
+    
+}
+
+ .user_info_box{
+  
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   margin: 51px ​ 30px 10px 30px;
+   padding: 29px;
+  width: 642px;
+ border-radius: 30px;
+ position: relative;
+}
+
+ .profile_label_input{
+     
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    
+    
+
+} 
+.profile_label_input div{
+    margin: 20px;
+    width: 50%;
+    font-size: 18px;
+    font-size: bolder;
+  
+} 
+.profile_label_input label{
+    width: 50%;  
+    margin: 20px;
+    font-size: 18px;
+}
+.profile_line{
+    width: 52%;
+    border-bottom: 2px solid whitesmoke;
+    margin-top: 20px !important;
+}
+
+
+
+.edit_icon_information{
+    position: absolute;
+   top: 630px;
+   left: 580px;
+   width: 40px;
+   height: 40px;
+   background-color: red;
+   padding: 2px;
+   border-radius: 100%;
+}
+.edit_icon_information:hover{
+    background-color: whiteSmoke;
+    cursor: pointer;
+}
+.edit_icon_account{
+    position: absolute;
+    top: 630px;
+    left: 580px;
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    padding: 2px;
+    border-radius: 100%;
+}
+.edit_icon_account:hover{
+    background-color: whiteSmoke;
+    cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+
+    .account_details{
+        margin: 20px 10px 20px 10px;
+    }
+   .edit_icon_account{
+    top: 550px;
+   }
+
+}
