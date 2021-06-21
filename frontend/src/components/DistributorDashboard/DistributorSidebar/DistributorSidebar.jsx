@@ -36,6 +36,8 @@ import MoneyIcon from "@material-ui/icons/Money";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStation";
 import ReportIcon from "@material-ui/icons/Report";
+import Dashboard from "../Dashboard";
+import Footer from "../../Footer/Footer";
 import Profile from "../Profile/Profile";
 import ChangePassword from "../ChangePassword/ChangePassword"
 const drawerWidth = 240;
@@ -51,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: "#00cc66",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -99,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
   },
 }));
 
@@ -111,6 +114,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
   const [openMember, setOpenMember] = useState(false);
   const [openIncome, setOpenIncome] = useState(false);
   const [openWithdrawal, setOpenWithdrawal] = useState(false);
+
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
   const [openViewProfile, setOpenViewProfile] = useState(false);
@@ -147,6 +151,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
   };
   const handleClickWithdrawal = () => {
     setOpenWithdrawal(!openWithdrawal);
+  };
     setopenProfile(false);
     setOpenIncome(false);
     setOpenMember(false);
