@@ -217,7 +217,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
 
         <List>
           {["Dashboard", "Logout"].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={()=>{(text == "Dashboard")? history.push("/distributor/dashboard"):history.push("/distributor/profile");}}>
               <ListItemIcon>
                 {index % 2 === 0 ? <DashboardIcon /> : <ExitToAppIcon />}
               </ListItemIcon>
@@ -387,6 +387,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
       
          {profile && <Profile />}
          {changepass && <ChangePassword />} 
+         {dashboard && <Dashboard />}
        
       </main>
     </div>
