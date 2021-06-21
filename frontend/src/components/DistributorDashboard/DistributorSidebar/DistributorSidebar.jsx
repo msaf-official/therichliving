@@ -151,7 +151,6 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
   };
   const handleClickWithdrawal = () => {
     setOpenWithdrawal(!openWithdrawal);
-  };
     setopenProfile(false);
     setOpenIncome(false);
     setOpenMember(false);
