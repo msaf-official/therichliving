@@ -7,7 +7,8 @@ import Products from "./components/Products/Products";
 import RegisterForm from "./components/Register/RegisterForm";
 import Login from "./components/Login/Login"
 import Footer from "./components/Footer/Footer"
-import DistributorSidebar from "./components/DistributorDashboard/DistributorSidebar/DistributorSidebar";
+
+import  DistributorSidebar from "./components/DistributorDashboard/DistributorSidebar/DistributorSidebar"
 function App() {
   return (
     <>
@@ -27,10 +28,16 @@ function App() {
           <Route exact path="/login">
             <Login />
           </Route>
-
-          <Route exact path="/distributor">
-          <DistributorSidebar/>
-          </Route>
+        <Route  path="/distributor/dashboard">
+          <DistributorSidebar dashboard={true}/>
+        </Route>
+        <Route  path="/distributor/profile">
+          <DistributorSidebar profile={true}/>
+        </Route>
+        <Route  path="/distributor/changepassword">
+          <DistributorSidebar changepass={true}/>
+        </Route>
+    
         </Switch>
       </Router>
     </>
