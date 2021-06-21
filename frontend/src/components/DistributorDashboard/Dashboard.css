@@ -1,0 +1,106 @@
+.root1 {
+  /* width: 212px; */
+  min-width: 100%;
+  max-width: 228px;
+  margin: 5;
+  color: white;
+  background: #283048; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #859398,
+    #283048
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #859398,
+    #283048
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.root2 {
+  background: #11998e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #38ef7d,
+    #11998e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #38ef7d,
+    #11998e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 24px;
+  color: white;
+  min-width: 221px;
+  max-width: 212px;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+.root3 {
+  background: #bc4e9c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #f80759,
+    #bc4e9c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #f80759,
+    #bc4e9c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  margin: 18px;
+  color: white;
+  min-width: 221px;
+  max-width: 212px;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.root4 {
+  background: #00c6ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #0072ff,
+    #00c6ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #0072ff,
+    #00c6ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  margin: 24px;
+  color: white;
+  min-width: 221px;
+  max-width: 212px;
+  margin: 10px;
+  border-radius: 10px;
+}
+.root5 {
+  background: #3494e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #ec6ead,
+    #3494e6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #ec6ead,
+    #3494e6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  margin: 24px;
+  color: white;
+  min-width: 380px;
+  max-width: 212px;
+  margin: 10px;
+  border-radius: 5px;
+}
+.news {
+  margin-top: 10px;
+  background-color: "#e6e6e6";
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: black;
+}
