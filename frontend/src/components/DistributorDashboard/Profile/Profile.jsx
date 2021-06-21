@@ -1,5 +1,6 @@
 import React from 'react'
-
+import bankEmoji from '../../../resources/icons/bankEmoji.png'
+import profile from '../../../resources/icons/profile.png'
 import './profile.css'
 import EditIcon from "@material-ui/icons/Edit";
 function Profile() {
@@ -10,7 +11,7 @@ function Profile() {
                <div className="edit_icon_information"><EditIcon style={{padding:4,margin:6}}/></div>
                   <h1>Profile Information</h1>
                  
-                    <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Gateway/Zeitgeist/Mar20/Covid19/2021/IN_GWD_Covid19_CustomerMsg_MH_ENG_1x_v1._CB669806110_.jpg" style={{width:160,height:160,borderRadius:"100%"}}/>
+                    <img src={profile} style={{width:160,height:160,borderRadius:"100%"}}/>
                     <div className="profile_line"></div>
                
               <div className="profile_label_input">
@@ -46,7 +47,7 @@ function Profile() {
                   <h1>Account Details</h1>
 
                  
-                    <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Gateway/Zeitgeist/Mar20/Covid19/2021/IN_GWD_Covid19_CustomerMsg_MH_ENG_1x_v1._CB669806110_.jpg" style={{width:160,height:160,borderRadius:"100%"}}/>
+                    <img src={bankEmoji} style={{width:160,height:160,borderRadius:"100%"}}/>
                     <div className="profile_line"></div>
                
               <div className="profile_label_input">
