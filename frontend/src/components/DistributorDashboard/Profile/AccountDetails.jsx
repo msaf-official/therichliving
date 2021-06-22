@@ -14,10 +14,6 @@ const AccountDetails = () => {
   const [editIFSC, setEditIFSC] = useState(false);
   const [bank, setBank] = useState("State Bank Of India");
   const [editBank, setEditBank] = useState(false);
-  const [address, setAddress] = useState(
-    "mother colony maheshpura paschmi ward no. 21 lakshmi pur pattin road kashipur udham singh nagar uttarakhand"
-  );
-  const [editAddress, setEditAddress] = useState(false);
 
   return (
     <>

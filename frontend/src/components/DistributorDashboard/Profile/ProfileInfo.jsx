@@ -4,10 +4,10 @@ import profile from "../../../resources/icons/profile.png";
 import "./profile.css";
 import EditIcon from "@material-ui/icons/Edit";
 import DoneIcon from "@material-ui/icons/Done";
+import BlockIcon from '@material-ui/icons/Block';
 
 const ProfileInfo = ()=> {
     const [memberId, setMemberId] = useState("TRL202112");
-    const [editMember, setEditMember] = useState(false);
     const [userName, setUserName] = useState("Muhammad Faizan");
     const [editUserName, setEditUserName] = useState(false);
     const [fatherName, setFatherName] = useState("Shafquat Hussain");
@@ -42,42 +42,19 @@ const ProfileInfo = ()=> {
           >
             <TextField
               variant="outlined"
-              disabled={!editMember}
+              disabled={true}
               value={memberId}
-              onChange={(e) => {
-                setMemberId(e.target.value);
-              }}
             />
-            {!editMember && (
               <div
-                onClick={() => {
-                  setEditMember(true);
-                }}
                 style={{
-                  backgroundColor: "deepskyblue",
+                  backgroundColor: "red",
                   color: "white",
                   alignSelf: "stretch",
                   padding: "1px 10px",
                 }}
               >
-                <EditIcon style={{ height: "100%" }} />
+                <BlockIcon style={{ height: "100%" }} />
               </div>
-            )}
-            {editMember && (
-              <div
-                onClick={() => {
-                  setEditMember(false);
-                }}
-                style={{
-                  backgroundColor: "green",
-                  color: "white",
-                  alignSelf: "stretch",
-                  padding: "1px 10px",
-                }}
-              >
-                <DoneIcon style={{ height: "100%" }} />
-              </div>
-            )}
           </div>
         </div>
         <div className="profile_label_input">
