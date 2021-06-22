@@ -29,34 +29,43 @@ export default function Dashboard() {
   return (
     <>
       <CardContent className="root1">
-        <Typography>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap:"wrap"
+          }}
+        >
           <div
             style={{
               display: "flex",
-              justifyContent: "left",
+              justifyContent: "start",
               alignItems: "center",
             }}
           >
             <DataUsageOutlinedIcon style={{ fontSize: "3rem" }} />
-            <h1>Dashbord</h1>
-            <Button
-              variant="contained"
-              color="primary"
+            <h1>Dashboard</h1>
+            </div>
+            <div
               style={{
-                position: "fixed",
-                right: "50px",
+                display:"flex",
+                justifyContent:"start",
+                alignItems:"center"
               }}
             >
-              Add Member
-            </Button>
+              <LinkIcon style={{ marginRight: 10, fontSize: "1.5rem" }} />
+              <h3>Refaral link</h3>
+            
           </div>
-        </Typography>
+        </div>
       </CardContent>
       <Box
         className="news"
         style={{
           borderTop: "2px dashed #8e0000",
           borderBottom: "2px dashed #8e0000",
+          padding:10
         }}
       >
         NEWS
@@ -71,7 +80,7 @@ export default function Dashboard() {
         </div>
       </Box>
 
-      <CardContent className="root5">
+      {/* <CardContent className="root5">
         <Typography>
           <div
             style={{
@@ -86,12 +95,12 @@ export default function Dashboard() {
             <a href="http://"> SOMETHING</a>
           </div>
         </Typography>
-      </CardContent>
+      </CardContent> */}
 
       <div
         style={{
           display: "flex",
-          justifyContent: "left",
+          justifyContent: "center",
           alignItems: "center",
           flexWrap: "wrap",
         }}
