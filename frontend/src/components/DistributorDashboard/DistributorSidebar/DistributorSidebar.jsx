@@ -36,6 +36,8 @@ import MoneyIcon from "@material-ui/icons/Money";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStation";
 import ReportIcon from "@material-ui/icons/Report";
+import Dashboard from "../Dashboard";
+import Footer from "../../Footer/Footer";
 import Profile from "../Profile/Profile";
 import ChangePassword from "../ChangePassword/ChangePassword"
 import Logout from "../Logout/Logout"
@@ -52,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: "#00cc66",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -100,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
   },
 }));
 
@@ -112,6 +115,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
   const [openMember, setOpenMember] = useState(false);
   const [openIncome, setOpenIncome] = useState(false);
   const [openWithdrawal, setOpenWithdrawal] = useState(false);
+
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
  const [openChangePass,setOpenChangePass]=useState(true);
@@ -213,7 +217,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
 
         {/* <List>
           {["Dashboard", "Logout"].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={()=>{(text == "Dashboard")? history.push("/distributor/dashboard"):history.push("/distributor/profile");}}>
               <ListItemIcon>
                 {index % 2 === 0 ? <DashboardIcon /> : <ExitToAppIcon onClick={()=>{
                   history.push("distributor/logout")
@@ -422,7 +426,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
       
          {profile && <Profile />}
          {changepass && <ChangePassword />} 
-         {logout && <Logout/>}
+         {dashboard && <Dashboard />}
        
       </main>
     </div>

@@ -1,13 +1,12 @@
 const router = require('express').Router()
+const {secure, registerValidation, loginValidation, tokenValidation} = require('../app/middlewares/auth');
+const {register, login, refreshToken} = require('../app/controllers/AuthController')
 
 
+router.post('/login',loginValidation,login) 
 
-router.get('/login',(req,res)=>{
-    res.json({login:"successfully"}).status(200)
-}) 
+router.post('/register',registerValidation,register) 
 
-router.post('/register',(req,res)=>{
-    res.json({register:"successfully"}).status(200)
-}) 
+router.post('/refresh_token',tokenValidation,refreshToken) 
 
 module.exports = router;
