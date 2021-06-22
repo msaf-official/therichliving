@@ -8,13 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { InputAdornment } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import EditIcon from "@material-ui/icons/Edit";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import { useHistory } from "react-router-dom";
-export default function ChangePassword() {
-  let history = useHistory();
+export default function ChangePassword({closePopup}) {
   const [open, setOpen] = React.useState(true);
 
   const [passwordValid, setPasswordValid] = useState(false);
@@ -24,9 +18,17 @@ export default function ChangePassword() {
   const [cVisibilityIcon, setCVisibilityIcon] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
 
- 
-  const checkValidation = () => {
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+    closePopup();
+  };
+
+
+  const checkValidation = () => {
  
      if (password === "") {
       setErrorPassword(true);
@@ -46,25 +48,19 @@ export default function ChangePassword() {
 
   return (
     <div>
-   
-      {/* <ListItem button onClick={handleClickOpen}>
-      <ListItemIcon>
-      <EditIcon  />
-  </ListItemIcon>
-   <ListItemText primary="Change Password" />
-    </ListItem> */}
-   
-      {/* <Dialog open={open} aria-labelledby="form-dialog-title"> */}
-        {/* <DialogTitle id="form-dialog-title">Change Password</DialogTitle> */}
-        {/* <DialogContent style={{display:"flex",flexDirection:"column",margin:10}}> */}
-        <div style={{display:"flex",flexDirection:"column" ,alignItems:"center"}}>
-          <h1>Change Password</h1>
+      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{textAlign:"center"}}>
+       Are Yor Sure You want to change the password
+      </Button> */}
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Change Password</DialogTitle>
+        <DialogContent style={{display:"flex",flexDirection:"column",margin:10}}>
+          
         <TextField
               id="outlined-basic"
               label="Enter Your Old Password"
               variant="outlined"
               style={{margin:10,width:300}}
-           
+             
               
             />
           <TextField
@@ -130,35 +126,16 @@ export default function ChangePassword() {
                 ),
               }}
             />
-        {/* </DialogContent> */}
+        </DialogContent>
         <DialogActions>
-          <Button onClick={()=>{
-             history.goBack();
-          }} color="primary">
+          <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={()=>{
-              history.goBack();
-          }} color="primary">
+          <Button onClick={handleClose} color="primary">
             Save    
           </Button>
         </DialogActions>
-      {/* </Dialog> */}
-    </div>
+      </Dialog>
     </div>
   );
 }
-
-
-
-// import React from 'react'
-// import { TextField } from '@material-ui/core';
-// function ChangePassword() {
-//   return (
-//     <div className="user_info_box">
-    
-//     </div>
-//   )
-// }
-
-// export default ChangePassword

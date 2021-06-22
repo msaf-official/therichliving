@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "#00cc66",
+    backgroundColor: "black",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DistributorSidebar({ dashboard = false, profile = false, changepass = false, logout = false,changePass =false}) {
+export default function DistributorSidebar({ dashboard = false, profile = false, logout = false,changePass =false}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -114,7 +114,7 @@ export default function DistributorSidebar({ dashboard = false, profile = false,
   const [openMember, setOpenMember] = useState(false);
   const [openIncome, setOpenIncome] = useState(false);
   const [openWithdrawal, setOpenWithdrawal] = useState(false);
-
+  const [changepass,setChangepass] = useState(false);
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
   // const [openChangePass, setOpenChangePass] = useState(false);
@@ -243,15 +243,13 @@ export default function DistributorSidebar({ dashboard = false, profile = false,
                   </ListItemIcon>
                   <ListItemText primary="View profile" />
                 </ListItem>
-          
-
-                <ListItem button onClick={()=>{
-
-                  history.push("/distributor/changePassword")
-                }} >
+                
+                <ListItem button className={classes.nested} onClick={()=>{
+                 
+                  setChangepass(true)
+                }}>
                   <ListItemIcon>
-                    <EditIcon />
-                  
+                    <FiberManualRecordIcon />
                   </ListItemIcon>
                   <ListItemText primary="Change Password" />
                 </ListItem>
@@ -386,13 +384,13 @@ export default function DistributorSidebar({ dashboard = false, profile = false,
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-
-        {profile && <Profile />}
-        {changepass && <ChangePassword />}
-        {dashboard && <Dashboard />}
-        {changePass && <ChangePassword
-          />}
-
+      
+         {profile && <Profile />}
+         {changepass && <ChangePassword closePopup={()=>setChangepass(false)}/>} 
+         {dashboard && <Dashboard />}
+        <br></br><br></br><br></br><br></br><br></br>
+         <Footer />
+       
       </main>
     </div>
   );
