@@ -3,7 +3,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
-
+  background-color: white;
+  cursor: default;
   padding: 20px;
 }
 
@@ -13,26 +14,30 @@
   flex-direction: column;
   align-items: center;
   margin: 51px ​ 30px 10px 30px;
-  padding: 29px;
-  /* width: 642px; */
-  border-radius: 30px;
+  padding: 40px 50px;
+  width: 642px; 
+  border-radius: 5px;
   position: relative;
 }
 
 .profile_label_input {
   margin-top: 10px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
-.profile_label_input div {
-  margin: 20px;
-  width: 50%;
-  font-size: 18px;
-  font-size: bolder;
+.MuiOutlinedInput-root {
+  width: 100%;
+  border-radius: 0px !important;
 }
+.MuiFormControl-root {
+  width: 100%;
+}
+
 .profile_label_input label {
-  width: 50%;
-  margin: 20px;
+  /* width: 50%; */
+  /* margin: 20px; */
   font-size: 18px;
 }
 .profile_line {
