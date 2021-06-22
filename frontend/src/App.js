@@ -34,8 +34,8 @@ function App() {
         <Route  path="/distributor/profile">
           <DistributorSidebar profile={true}/>
         </Route>
-        <Route  path="/distributor/changepassword">
-          <DistributorSidebar changepass={true}/>
+        <Route  path="/distributor/changePassword">
+          <DistributorSidebar changePass={true}/>
         </Route>
     
         </Switch>

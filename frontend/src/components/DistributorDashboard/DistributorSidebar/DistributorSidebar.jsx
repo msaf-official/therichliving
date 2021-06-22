@@ -16,12 +16,11 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
-import StarBorder from "@material-ui/icons/StarBorder";
+
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PersonIcon from "@material-ui/icons/Person";
@@ -107,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DistributorSidebar({ dashboard = false, profile = false, changepass = false, logout = false }) {
+export default function DistributorSidebar({ dashboard = false, profile = false, changepass = false, logout = false,changePass =false}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -118,7 +117,7 @@ export default function DistributorSidebar({ dashboard = false, profile = false,
 
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
-  const [openChangePass, setOpenChangePass] = useState(false);
+  // const [openChangePass, setOpenChangePass] = useState(false);
   let history = useHistory();
   const handleClickProfile = () => {
     setopenProfile(!openProfile);
@@ -247,11 +246,12 @@ export default function DistributorSidebar({ dashboard = false, profile = false,
           
 
                 <ListItem button onClick={()=>{
-                  setOpenChangePass(!openChangePass);
+
+                  history.push("/distributor/changePassword")
                 }} >
                   <ListItemIcon>
                     <EditIcon />
-                    {openChangePass && <ChangePassword  />}
+                  
                   </ListItemIcon>
                   <ListItemText primary="Change Password" />
                 </ListItem>
@@ -390,6 +390,8 @@ export default function DistributorSidebar({ dashboard = false, profile = false,
         {profile && <Profile />}
         {changepass && <ChangePassword />}
         {dashboard && <Dashboard />}
+        {changePass && <ChangePassword
+          />}
 
       </main>
     </div>
