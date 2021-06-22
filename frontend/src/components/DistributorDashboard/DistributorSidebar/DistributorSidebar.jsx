@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DistributorSidebar({dashboard=false,profile=false,changepass=false}) {
+export default function DistributorSidebar({dashboard=false,profile=false}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -114,7 +114,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
   const [openMember, setOpenMember] = useState(false);
   const [openIncome, setOpenIncome] = useState(false);
   const [openWithdrawal, setOpenWithdrawal] = useState(false);
-
+  const [changepass,setChangepass] = useState(false);
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
   const [openViewProfile, setOpenViewProfile] = useState(false);
@@ -251,15 +251,10 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
                   </ListItemIcon>
                   <ListItemText primary="View profile" />
                 </ListItem>
-                <ListItem button className={classes.nested}>
-                  <ListItemIcon>
-                    <EditIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Edit Profile" />
-                </ListItem>
+                
                 <ListItem button className={classes.nested} onClick={()=>{
                  
-                  history.push('/distributor/changepassword')
+                  setChangepass(true)
                 }}>
                   <ListItemIcon>
                     <FiberManualRecordIcon />
@@ -386,7 +381,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
         <div className={classes.toolbar} />
       
          {profile && <Profile />}
-         {changepass && <ChangePassword />} 
+         {changepass && <ChangePassword closePopup={()=>setChangepass(false)}/>} 
          {dashboard && <Dashboard />}
        
       </main>
