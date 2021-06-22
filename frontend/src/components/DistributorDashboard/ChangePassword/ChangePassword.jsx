@@ -8,6 +8,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { InputAdornment } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import EditIcon from "@material-ui/icons/Edit";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItem from "@material-ui/core/ListItem";
 export default function ChangePassword() {
   const [open, setOpen] = React.useState(true);
 
@@ -27,7 +31,11 @@ export default function ChangePassword() {
   };
 
 
-  const checkValidation = () => {
+  const checkValidation = ({pass}) => {
+   function pass(op){
+     setOpen(op);
+      return open
+   }
  
      if (password === "") {
       setErrorPassword(true);
@@ -47,9 +55,14 @@ export default function ChangePassword() {
 
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{textAlign:"center"}}>
-       Are Yor Sure You want to change the password
-      </Button> */}
+   
+      {/* <ListItem button onClick={handleClickOpen}>
+      <ListItemIcon>
+      <EditIcon  />
+  </ListItemIcon>
+   <ListItemText primary="Change Password" />
+    </ListItem> */}
+   
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Change Password</DialogTitle>
         <DialogContent style={{display:"flex",flexDirection:"column",margin:10}}>

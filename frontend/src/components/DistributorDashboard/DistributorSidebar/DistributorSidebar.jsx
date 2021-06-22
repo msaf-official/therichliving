@@ -38,6 +38,7 @@ import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStatio
 import ReportIcon from "@material-ui/icons/Report";
 import Profile from "../Profile/Profile";
 import ChangePassword from "../ChangePassword/ChangePassword"
+import Logout from "../Logout/Logout"
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -103,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DistributorSidebar({dashboard=false,profile=false,changepass=false}) {
+export default function DistributorSidebar({dashboard=false,profile=false,changepass=false,logout=false}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -113,8 +114,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
   const [openWithdrawal, setOpenWithdrawal] = useState(false);
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
-  const [openViewProfile, setOpenViewProfile] = useState(false);
-  const [openDashboard, setOpenDashboard] = useState(true);
+ const [openChangePass,setOpenChangePass]=useState(true);
   let history = useHistory();
   const handleClickProfile = () => {
     setopenProfile(!openProfile);
@@ -211,15 +211,27 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
         </div>
         <Divider />
 
-        <List>
+        {/* <List>
           {["Dashboard", "Logout"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <DashboardIcon /> : <ExitToAppIcon />}
+                {index % 2 === 0 ? <DashboardIcon /> : <ExitToAppIcon onClick={()=>{
+                  history.push("distributor/logout")
+                }}/>}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
+        </List> */}
+         <List>
+          
+            <ListItem button >
+              <ListItemIcon>
+              <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard"  />
+            </ListItem>
+         
         </List>
         <Divider />
 
@@ -247,21 +259,35 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
                   </ListItemIcon>
                   <ListItemText primary="View profile" />
                 </ListItem>
-                <ListItem button className={classes.nested}>
-                  <ListItemIcon>
+                <ListItem button className={classes.nested}
+                   onClick={()=>{
+                 
+                    history.push('/distributor/editProfile')
+                  }}
+              >
+               {/* onClick={()=>{
+                 
+                 history.push('/distributor/changepassword')
+               }} */}
+                  <ListItemIcon  button className={classes.nested}>
                     <EditIcon />
+                   
                   </ListItemIcon>
                   <ListItemText primary="Edit Profile" />
                 </ListItem>
-                <ListItem button className={classes.nested} onClick={()=>{
-                 
-                  history.push('/distributor/changepassword')
-                }}>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Change Password" />
-                </ListItem>
+                
+             <ListItem button >
+      <ListItemIcon>
+      <EditIcon  />
+        {openChangePass && <ChangePassword pass={(op)=>{
+                 setOpenChangePass(op)
+               }}/>}
+  </ListItemIcon>
+   <ListItemText primary="Change Password" />
+    </ListItem>
+                
+             
+                
               </List>
             </Collapse>
           </>
@@ -377,12 +403,26 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
           </>
           {/* ))} */}
         </List>
+        <List>
+          <Divider/>
+          <ListItem button onClick={()=>{
+                  history.push("/distributor/logout")
+                }} >
+            <ListItemIcon>
+            <ExitToAppIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Logout"/>
+          </ListItem>
+       
+      </List>
+        
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
       
          {profile && <Profile />}
          {changepass && <ChangePassword />} 
+         {logout && <Logout/>}
        
       </main>
     </div>
