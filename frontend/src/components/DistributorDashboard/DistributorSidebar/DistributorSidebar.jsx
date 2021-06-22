@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "#00cc66",
+    backgroundColor: "black",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -383,6 +383,8 @@ export default function DistributorSidebar({dashboard=false,profile=false}) {
          {profile && <Profile />}
          {changepass && <ChangePassword closePopup={()=>setChangepass(false)}/>} 
          {dashboard && <Dashboard />}
+        <br></br><br></br><br></br><br></br><br></br>
+         <Footer />
        
       </main>
     </div>
