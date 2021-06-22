@@ -98,16 +98,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
+
     ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
-    // padding: theme.spacing(3),
+
   },
 }));
 
-export default function DistributorSidebar({dashboard=false,profile=false,changepass=false,logout=false}) {
+export default function DistributorSidebar({ dashboard = false, profile = false, changepass = false, logout = false }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -118,7 +118,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
 
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
- const [openChangePass,setOpenChangePass]=useState(true);
+  const [openChangePass, setOpenChangePass] = useState(false);
   let history = useHistory();
   const handleClickProfile = () => {
     setopenProfile(!openProfile);
@@ -130,14 +130,12 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
     setOpenMember(!openMember);
     setopenProfile(false);
     setOpenIncome(false);
-
     setOpenWithdrawal(false);
   };
 
   const handleClickIncome = () => {
     setOpenIncome(!openIncome);
     setopenProfile(false);
-
     setOpenMember(false);
     setOpenWithdrawal(false);
   };
@@ -158,12 +156,6 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
   const activeList = (name) => {
     setActive(name);
   };
-  // const handleProfile = () => {
-   
-  //   // console.log("this is handle profile");
-  //   // setOpenViewProfile(!openViewProfile);
-  //   // setOpenDashboard(!openDashboard);
-  // };
 
   return (
     <div className={classes.root}>
@@ -187,7 +179,7 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-           The Rich Living
+            The Rich Living
           </Typography>
         </Toolbar>
       </AppBar>
@@ -215,27 +207,16 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
         </div>
         <Divider />
 
-        {/* <List>
-          {["Dashboard", "Logout"].map((text, index) => (
-            <ListItem button key={text} onClick={()=>{(text == "Dashboard")? history.push("/distributor/dashboard"):history.push("/distributor/profile");}}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <DashboardIcon /> : <ExitToAppIcon onClick={()=>{
-                  history.push("distributor/logout")
-                }}/>}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
-         <List>
-          
-            <ListItem button >
-              <ListItemIcon>
+
+        <List>
+
+          <ListItem button >
+            <ListItemIcon>
               <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard"  />
-            </ListItem>
-         
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+
         </List>
         <Divider />
 
@@ -247,55 +228,37 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
               </ListItemIcon>
               <ListItemText primary="Profile" />
 
-            {openProfile ? <ExpandLess /> : <ExpandMore />}
+              {openProfile ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={openProfile} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItem
                   button
                   className={classes.nested}
-                  onClick={()=>{
+                  onClick={() => {
                     history.push("/distributor/profile");
-                 }}
+                  }}
                 >
                   <ListItemIcon >
                     <VisibilityIcon />
                   </ListItemIcon>
                   <ListItemText primary="View profile" />
                 </ListItem>
-                <ListItem button className={classes.nested}
-                   onClick={()=>{
-                 
-                    history.push('/distributor/editProfile')
-                  }}
-              >
-               {/* onClick={()=>{
-                 
-                 history.push('/distributor/changepassword')
-               }} */}
-                  <ListItemIcon  button className={classes.nested}>
+          
+
+                <ListItem button onClick={()=>{
+                  setOpenChangePass(!openChangePass);
+                }} >
+                  <ListItemIcon>
                     <EditIcon />
-                   
+                    {openChangePass && <ChangePassword  />}
                   </ListItemIcon>
-                  <ListItemText primary="Edit Profile" />
+                  <ListItemText primary="Change Password" />
                 </ListItem>
-                
-             <ListItem button >
-      <ListItemIcon>
-      <EditIcon  />
-        {openChangePass && <ChangePassword pass={(op)=>{
-                 setOpenChangePass(op)
-               }}/>}
-  </ListItemIcon>
-   <ListItemText primary="Change Password" />
-    </ListItem>
-                
-             
-                
               </List>
             </Collapse>
           </>
-          {/* ))} */}
+     
         </List>
         <List>
           <>
@@ -408,26 +371,26 @@ export default function DistributorSidebar({dashboard=false,profile=false,change
           {/* ))} */}
         </List>
         <List>
-          <Divider/>
-          <ListItem button onClick={()=>{
-                  history.push("/distributor/logout")
-                }} >
+          <Divider />
+          <ListItem button onClick={() => {
+            history.push("/distributor/logout")
+          }} >
             <ListItemIcon>
-            <ExitToAppIcon/>
+              <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary="Logout"/>
+            <ListItemText primary="Logout" />
           </ListItem>
-       
-      </List>
-        
+
+        </List>
+
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-      
-         {profile && <Profile />}
-         {changepass && <ChangePassword />} 
-         {dashboard && <Dashboard />}
-       
+
+        {profile && <Profile />}
+        {changepass && <ChangePassword />}
+        {dashboard && <Dashboard />}
+
       </main>
     </div>
   );
