@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 exports.registerValidation = [
+  
     check("sponser_id", "Sponser Id is required").not().isEmpty(),
     check("sponser_name", "Sponser name is required").not().isEmpty(),
     check("user_name", "User name is required").not().isEmpty(),

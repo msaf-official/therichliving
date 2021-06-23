@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./registerForm.css";
+import {fetchData}  from "../../middleware/requestHandler"
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Visibility from "@material-ui/icons/Visibility";
 import { InputAdornment } from "@material-ui/core";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import userSponserData from "../../actions/user.actions"
+import {useSelector,useDispatch} from "react-redux"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,8 +39,8 @@ function VisibilityIcon(props) {
 function RegisterForm() {
   const [sponser_id, setSponserId] = useState("");
   const [sponser_name, setSponserName] = useState("");
-  const [name, setName] = useState("");
-  const [data_of_birth, setdate_of_birth] = useState(new Date());
+  const [user_name, setName] = useState("");
+  const [date_of_birth, setdate_of_birth] = useState(new Date());
   const [mobile_number, setMobileNumber] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,15 +54,15 @@ function RegisterForm() {
   const [visibilityIcon, setVisibilityIcon] = useState(false);
   const [cVisibilityIcon, setCVisibilityIcon] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
-
+  const dispatch = useDispatch();
   const classes = useStyles();
   let history = useHistory();
 
   let payload = {
     sponser_id,
     sponser_name,
-    name,
-    data_of_birth,
+    user_name,
+    date_of_birth,
     mobile_number,
     email,
     password,
@@ -70,12 +73,12 @@ function RegisterForm() {
       return false;
     }
     setErrorSId(false);
-    if (name === "") {
+    if (user_name === "") {
       setErrorName(true);
       return false;
     }
     setErrorName(false);
-    if (data_of_birth === "") {
+    if (date_of_birth === "") {
       setErrorDOB(true);
       return false;
     }
@@ -115,10 +118,37 @@ function RegisterForm() {
     setdate_of_birth(new Date())
   }
 
+  useEffect(() => {
+     fetchData(`/user?user_id=${sponser_id}`,{
+       method:"GET",
+       headers: { "Content-Type": "application/json" },
+     }).then((res)=>{
+       console.log(res);
+       setSponserName("Loding.....")
+       if(res.status == "true"){
+       setSponserName(res.userData.user_name)
+       console.log(res.userData.user_name)
+       return
+     
+      }
+     
+     })
+      
+     
+    
+  },[sponser_id])
+
   const submitForm = () => {
-    if (checkValidation()) {
-      alert("Form Submitted Successfully")
-    }
+  fetchData(`/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body:JSON.stringify(payload),
+    }).then((res) => {
+      
+       alert("Your user ID",res.userId)
+      
+   
+    });
 
     clearFields();
   }
@@ -156,7 +186,7 @@ function RegisterForm() {
               id="outlined-basic"
               label="Sponser Name"
               variant="outlined"
-              value={sponser_id}
+              value={sponser_name}
               disabled={true}
             />
             <TextField
@@ -164,7 +194,7 @@ function RegisterForm() {
               label="Enter Your Name *"
               variant="outlined"
               error={errorName}
-              value={name}
+              value={user_name}
               onChange={(e) => {
                 setName(e.target.value);
               }}
@@ -175,7 +205,7 @@ function RegisterForm() {
                 shrink: true,
               }}
               label="Date of birth*"
-              value={data_of_birth}
+              value={date_of_birth}
               error={errorDOB}
               variant="outlined"
               type={"date"}

@@ -5,6 +5,7 @@ const { validationResult } = require("express-validator");
 require("dotenv").config();
 
 exports.register = async (req, res) => {
+  console.log("faizan pasha");
   try {
     let error = validationResult(req);
     if (!error.isEmpty()) {
@@ -61,6 +62,7 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
+  console.log(req.body);
   try {
     let error = validationResult(req);
     if (!error.isEmpty()) {
@@ -134,10 +136,31 @@ exports.refreshToken = async (req, res) => {
         message: "session refreshed",
         accessToken: accessToken,
         refreshToken: RefreshToken,
-        user: jwtData.user
+        user: jwtData.user,
       })
       .status(200);
   } catch (err) {
     console.log(err.message);
+  }
+};
+
+exports.getUser = async (req, res) => {
+  let userId = req.query.user_id;
+  console.log(userId);
+  let user = await User.findOne({ user_id: userId });
+  if (user == null) {
+    return res
+      .json({
+        status: "false",
+        userData: user,
+      })
+      .status(404);
+  } else {
+    return res
+      .json({
+        status: "true",
+        userData: user,
+      })
+      .status(200);
   }
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./login.css";
+import {fetchData}  from "../../middleware/requestHandler"
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -22,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login() {
-  const [loginId, setLoginId] = useState("");
+function Login({setToken}) {
+  const [user_id, setUserId] = useState("");
 
   const [password, setPassword] = useState("");
   
@@ -35,11 +36,11 @@ function Login() {
   let history = useHistory();
 
   let payload = {
-    loginId,
+    user_id,
     password,
   };
   const checkValidation = () => {
-    if (loginId === "") {
+    if (user_id === "") {
       setErrorId(true);
       return false;
     }
@@ -54,16 +55,31 @@ function Login() {
 
   const clearFields = () =>{
     setPassword("")
-    setLoginId("")
+    setUserId("")
   }
 
-  const submitForm = () =>{
-    if (checkValidation()) {
-      alert("Form submitted successfully")
+  const submitForm = () => {
+    fetchData(`/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body:JSON.stringify(payload),
+      }).then((res) => {
+        
+          console.log(res);
+          if(res.message=="Login successfully"){
+            localStorage.setItem('access_token',res.access_token);
+            localStorage.setItem('refresh_token',res.refresh_token);
+            setToken(localStorage.getItem("access_token"));
+            history.push('/distributor/dashboard')
+            // window.location.reload(); 
+          }
+          
+        
+     
+      });
+  
+      clearFields();
     }
-
-    clearFields();
-  }
 
   return (
     <div className="register_container">
@@ -82,10 +98,10 @@ function Login() {
             id="outlined-basic"
             label="Distributor ID"
             error={errorId}
-            value={loginId}
+            value={user_id}
             variant="outlined"
             onChange={(e) => {
-              setLoginId(e.target.value);
+              setUserId(e.target.value);
             }}
           />
           <TextField
