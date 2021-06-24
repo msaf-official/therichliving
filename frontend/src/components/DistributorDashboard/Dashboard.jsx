@@ -57,6 +57,7 @@ export default function Dashboard() {
         style={{
           borderTop: "2px dashed #8e0000",
           borderBottom: "2px dashed #8e0000",
+          backgroundColor: "#e6e6e6",
         }}
       >
         NEWS
