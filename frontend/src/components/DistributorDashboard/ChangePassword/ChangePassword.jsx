@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { InputAdornment } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-export default function ChangePassword() {
+export default function ChangePassword({closePopup}) {
   const [open, setOpen] = React.useState(true);
 
   const [passwordValid, setPasswordValid] = useState(false);
@@ -24,6 +24,7 @@ export default function ChangePassword() {
 
   const handleClose = () => {
     setOpen(false);
+    closePopup();
   };
 
 

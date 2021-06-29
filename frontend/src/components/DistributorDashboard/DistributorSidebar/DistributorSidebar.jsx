@@ -16,12 +16,11 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
-import StarBorder from "@material-ui/icons/StarBorder";
+
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PersonIcon from "@material-ui/icons/Person";
@@ -40,6 +39,7 @@ import Dashboard from "../Dashboard";
 import Footer from "../../Footer/Footer";
 import Profile from "../Profile/Profile";
 import ChangePassword from "../ChangePassword/ChangePassword";
+import Logout from "../Logout/Logout";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "#00cc66",
+    backgroundColor: "black",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -97,19 +97,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
+
     ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
-    // padding: theme.spacing(3),
   },
 }));
 
 export default function DistributorSidebar({
   dashboard = false,
   profile = false,
-  changepass = false,
+  logout = false,
+  changePass = false,
 }) {
   const classes = useStyles();
   const theme = useTheme();
@@ -118,11 +118,10 @@ export default function DistributorSidebar({
   const [openMember, setOpenMember] = useState(false);
   const [openIncome, setOpenIncome] = useState(false);
   const [openWithdrawal, setOpenWithdrawal] = useState(false);
-
+  const [changepass, setChangepass] = useState(false);
   const [viewProfile, setViewProfile] = useState(false);
   const [active, setActive] = useState();
-  const [openViewProfile, setOpenViewProfile] = useState(false);
-  const [openDashboard, setOpenDashboard] = useState(true);
+  // const [openChangePass, setOpenChangePass] = useState(false);
   let history = useHistory();
   const handleClickProfile = () => {
     setopenProfile(!openProfile);
@@ -134,14 +133,12 @@ export default function DistributorSidebar({
     setOpenMember(!openMember);
     setopenProfile(false);
     setOpenIncome(false);
-
     setOpenWithdrawal(false);
   };
 
   const handleClickIncome = () => {
     setOpenIncome(!openIncome);
     setopenProfile(false);
-
     setOpenMember(false);
     setOpenWithdrawal(false);
   };
@@ -155,7 +152,6 @@ export default function DistributorSidebar({
   };
   const handleClickWithdrawal = () => {
     setOpenWithdrawal(!openWithdrawal);
-
     setopenProfile(false);
     setOpenIncome(false);
     setOpenMember(false);
@@ -163,248 +159,248 @@ export default function DistributorSidebar({
   const activeList = (name) => {
     setActive(name);
   };
-  // const handleProfile = () => {
-
-  //   // console.log("this is handle profile");
-  //   // setOpenViewProfile(!openViewProfile);
-  //   // setOpenDashboard(!openDashboard);
-  // };
 
   return (
-    <>
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              The Rich Living
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          className={clsx(classes.drawer, {
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
+            The Rich Living
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          })}
-          classes={{
-            paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open,
-            }),
-          }}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-          </div>
-          <Divider />
+          }),
+        }}
+      >
+        <div className={classes.toolbar}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
+        </div>
+        <Divider />
 
-          <List>
-            {/* {["Dashboard", "Logout"].map((text, index) => ( */}
-            <ListItem
-              button
-              onClick={() => {
-                history.push("/distributor/dashboard");
-              }}
-            >
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+        </List>
+        <Divider />
+
+        <List>
+          <>
+            <ListItem onClick={handleClickProfile}>
               <ListItemIcon>
-                <DashboardIcon />
-                {/* {index % 2 === 0 ? <DashboardIcon /> : <ExitToAppIcon />} */}
+                <PersonIcon />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText primary="Profile" />
+
+              {openProfile ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            {/* ))} */}
-          </List>
+            <Collapse in={openProfile} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem
+                  button
+                  className={classes.nested}
+                  onClick={() => {
+                    history.push("/distributor/profile");
+                  }}
+                >
+                  <ListItemIcon>
+                    <VisibilityIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="View profile" />
+                </ListItem>
+
+                <ListItem
+                  button
+                  className={classes.nested}
+                  onClick={() => {
+                    setChangepass(true);
+                  }}
+                >
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Change Password" />
+                </ListItem>
+              </List>
+            </Collapse>
+          </>
+        </List>
+        <List>
+          <>
+            <ListItem
+              onClick={handleClickMember}
+              className={active === "name" ? "active" : ""}
+            >
+              <ListItemIcon onClick={() => activeList("name")}>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="All Memebers" />
+
+              {openMember ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openMember} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <DirectionsWalkIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Direct Member" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <PeopleOutlineIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="My Level Team" />
+                </ListItem>
+              </List>
+            </Collapse>
+          </>
+          {/* ))} */}
+        </List>
+
+        <List>
+          <>
+            <ListItem onClick={handleClickIncome}>
+              <ListItemIcon>
+                <MoneyIcon />
+              </ListItemIcon>
+              <ListItemText primary="Income Report" />
+
+              {openIncome ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openIncome} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Direct Income" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Level Income" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Single Leg Income" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Reward Income" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Upgrade Income" />
+                </ListItem>
+              </List>
+            </Collapse>
+          </>
+          {/* ))} */}
+        </List>
+
+        <List>
+          <>
+            <ListItem onClick={handleClickWithdrawal}>
+              <ListItemIcon>
+                <TransferWithinAStationIcon />
+              </ListItemIcon>
+              <ListItemText primary="Withdrawal" />
+
+              {openWithdrawal ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openWithdrawal} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <FiberManualRecordIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Withdrawal fund" />
+                </ListItem>
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <ReportIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Withdrawal Report" />
+                </ListItem>
+              </List>
+            </Collapse>
+          </>
+          {/* ))} */}
+        </List>
+        <List>
           <Divider />
+          <ListItem
+            button
+            onClick={() => {
+              history.push("/distributor/logout");
+            }}
+          >
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+        </List>
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
 
-          <List>
-            <>
-              <ListItem onClick={handleClickProfile}>
-                <ListItemIcon>
-                  <PersonIcon />
-                </ListItemIcon>
-                <ListItemText primary="Profile" />
-
-                {openProfile ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-              <Collapse in={openProfile} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItem
-                    button
-                    className={classes.nested}
-                    onClick={() => {
-                      history.push("/distributor/profile");
-                    }}
-                  >
-                    <ListItemIcon>
-                      <VisibilityIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="View profile" />
-                  </ListItem>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <EditIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Edit Profile" />
-                  </ListItem>
-                  <ListItem
-                    button
-                    className={classes.nested}
-                    onClick={() => {
-                      history.push("/distributor/changepassword");
-                    }}
-                  >
-                    <ListItemIcon>
-                      <FiberManualRecordIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Change Password" />
-                  </ListItem>
-                </List>
-              </Collapse>
-            </>
-            {/* ))} */}
-          </List>
-          <List>
-            <>
-              <ListItem
-                onClick={handleClickMember}
-                className={active === "name" ? "active" : ""}
-              >
-                <ListItemIcon onClick={() => activeList("name")}>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="All Memebers" />
-
-                {openMember ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-              <Collapse in={openMember} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <DirectionsWalkIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Direct Member" />
-                  </ListItem>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <PeopleOutlineIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="My Level Team" />
-                  </ListItem>
-                </List>
-              </Collapse>
-            </>
-            {/* ))} */}
-          </List>
-
-          <List>
-            <>
-              <ListItem onClick={handleClickIncome}>
-                <ListItemIcon>
-                  <MoneyIcon />
-                </ListItemIcon>
-                <ListItemText primary="Income Report" />
-
-                {openIncome ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-              <Collapse in={openIncome} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <FiberManualRecordIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Direct Income" />
-                  </ListItem>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <FiberManualRecordIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Level Income" />
-                  </ListItem>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <FiberManualRecordIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Single Leg Income" />
-                  </ListItem>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <FiberManualRecordIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Reward Income" />
-                  </ListItem>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <FiberManualRecordIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Upgrade Income" />
-                  </ListItem>
-                </List>
-              </Collapse>
-            </>
-            {/* ))} */}
-          </List>
-
-          <List>
-            <>
-              <ListItem onClick={handleClickWithdrawal}>
-                <ListItemIcon>
-                  <TransferWithinAStationIcon />
-                </ListItemIcon>
-                <ListItemText primary="Withdrawal" />
-
-                {openWithdrawal ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-              <Collapse in={openWithdrawal} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <FiberManualRecordIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Withdrawal fund" />
-                  </ListItem>
-                  <ListItem button className={classes.nested}>
-                    <ListItemIcon>
-                      <ReportIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Withdrawal Report" />
-                  </ListItem>
-                </List>
-              </Collapse>
-            </>
-            {/* ))} */}
-          </List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {dashboard && <Dashboard />}
-
-          {profile && <Profile />}
-          {changepass && <ChangePassword />}
-        </main>
-      </div>
-    </>
+        {profile && <Profile />}
+        {changepass && (
+          <ChangePassword closePopup={() => setChangepass(false)} />
+        )}
+        {dashboard && <Dashboard />}
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <Footer />
+      </main>
+    </div>
   );
 }
